@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "GithubFinder"
+    }
+  },
+  "defaultProject": "GithubFinder",
+  "cli": {
+    "analytics": false
+  }
 }
