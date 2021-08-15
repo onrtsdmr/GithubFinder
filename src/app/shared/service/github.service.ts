@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Github } from '../model/github';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,9 @@ export class GithubService {
 
   constructor(private http: HttpClient) { }
 
-  getUserInformation(username: string) {
+  getUserInformation(username: string): Observable<Github> {
+
+    let requestURL = `${this.BASE_URL}/users/${username}`;
 
     let headerDict = {
       'Content-Type': 'application/json',
@@ -21,19 +25,6 @@ export class GithubService {
       headers: new HttpHeaders(headerDict),
     };
 
-    return this.http.get(`${this.BASE_URL}/users/${username}`, requestOptions).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      },
-    );
+    return this.http.get<Github>(requestURL, requestOptions);
   }
 }
-/**
- *
- * Login 15 Ağustos Token -> denizacdray2456 // 24 saat
- *
- *
- * */
