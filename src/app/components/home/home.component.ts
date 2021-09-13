@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private toast: ToastrService, private route: Router) {
+  }
 
   ngOnInit(): void {
+  }
+
+  searchUser(username: string) {
+    if (username.length == 0) {
+      this.toast.error("Please enter username");
+      return;
+    }
+    this.route.navigate(['/dashboard'], {state: {data: username}});
   }
 
 }

@@ -1,0 +1,15 @@
+.container {
+  height: calc(100vh - 216px);
+  @media screen and (max-width: 767px) {
+    height: 100%;
+  }
+}
+
+.badge-group{
+  min-width: 240px;
+}
+
+.badge:nth-child(1){
+  min-width: 200px;
+  max-width: 200px;
+}
