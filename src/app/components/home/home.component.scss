@@ -1,0 +1,20 @@
+.input-group input {
+  border-radius: 2.25em;
+}
+
+.input-group-text {
+  display: flex;
+  position: absolute;
+  justify-content: flex-end;
+  height: 100%;
+  margin: 0;
+  right: 0;
+  z-index: 999;
+  background-color: transparent;
+  border: none;
+  border-radius: 500px;
+}
+
+.input-group-text i {
+  border-radius: 500px;
+}

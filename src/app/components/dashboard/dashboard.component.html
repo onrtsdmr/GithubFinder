@@ -1,1 +1,67 @@
-<p>dashboard works!</p>
+<div *ngIf="!isLoaded" class="d-flex flex-column justify-content-center align-items-center bg-dark"
+     style="height: 100vh">
+  <div>
+    <img alt="" class="rounded mx-auto d-block w-25 mb-2" src="assets/images/octo-cat.png">
+  </div>
+  <div class="spinner-grow text-white" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="isLoaded" class="container my-5">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-12 ">
+      <img alt="..." class="rounded-circle w-50" src="{{data.avatar_url}}">
+    </div>
+    <div class="col-lg-8 col-md-6 col-12">
+      <h1>{{data.name}}</h1>
+      <div class="row">
+        <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
+          <span style="font-size: x-large;"><span class="badge bg-dark"><i
+            class="fas fa-user p-2"></i>{{data.login}}</span></span>
+        </div>
+        <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
+          <span style="font-size: x-large;"><span class="badge bg-dark"><i class="fas fa-user p-2"></i>
+            followers <span class="badge bg-secondary rounded-pill">{{data.followers}}</span>
+          </span>
+          </span>
+        </div>
+        <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
+          <span style="font-size: x-large;"><span class="badge bg-dark"><i
+            class="fas fa-user p-2"></i>
+            following <span class="badge bg-secondary rounded-pill">{{data.following}}</span>
+          </span></span>
+        </div>
+
+        <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
+          <span style="font-size: x-large;">
+            <span class="badge bg-secondary">
+              <i class="fas fa-map-marker-alt p-2"></i>
+              {{data.location}}
+            </span>
+          </span>
+        </div>
+        <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
+          <span style="font-size: x-large;"><span class="badge bg-secondary"><i
+            class="fas fa-book p-2"></i>
+            Repos <span class="badge bg-dark rounded-pill">{{data.public_repos}}</span>
+          </span>
+          </span>
+        </div>
+        <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
+          <span style="font-size: x-large;"><span class="badge bg-secondary"><i
+            class="fas fa-user p-2"></i>
+            Gists <span class="badge bg-dark rounded-pill">{{data.public_gists}}</span>
+          </span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="d-flex justify-content-end align-items-end w-100 m-2">
+    <a [href]="data.html_url" target="_blank" class="col-lg-2 col-md-6 col-sm-6 col-10 btn btn-sm btn-outline-dark p-2 m-2">Visit <i
+      class="fas fa-arrow-right"></i></a>
+    <a [routerLink]="'/home'" class="col-lg-2 col-md-6 col-sm-6 col-10 btn btn-sm btn-secondary p-2 m-2">Go Back <i
+      class="fas fa-arrow-right"></i></a>
+  </div>
+</div>

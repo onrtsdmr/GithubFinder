@@ -1,1 +1,18 @@
-<p>home works!</p>
+<div class="container d-flex" style="height: calc(100vh - 120px);">
+  <div class="m-auto">
+    <div class="logo d-flex mb-3">
+      <img alt="logo" class="img-responsive h-25 w-25 justify-content-center  mx-auto"
+           src="../../../assets/images/octo-cat.png">
+    </div>
+
+    <div class="form">
+      <div class="input-group w-50 mx-auto">
+        <input #userName (keydown.enter)="searchUser(userName.value)" autofocus class="form-control" placeholder="Enter Your Username"
+               type="text">
+        <span class="input-group-text" id="basic-addon2">
+                  <i class="fas fa-search"></i>
+              </span>
+      </div>
+    </div>
+  </div>
+</div>
