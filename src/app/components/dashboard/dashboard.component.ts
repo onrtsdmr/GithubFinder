@@ -12,7 +12,6 @@ import {GithubService} from "../../shared/service/github.service";
 export class DashboardComponent implements OnInit {
   username: string;
   data: Github;
-  isLoaded = true;
 
   constructor(private router: Router, private toast: ToastrService, private githubService: GithubService) {
     let data = this.router.getCurrentNavigation().extras.state;
@@ -27,10 +26,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.githubService.getUserInformation(this.username).subscribe(
       res => {
-        console.log(typeof(res));
         this.data = res;
         console.log(this.data);
-        this.isLoaded = true;
       },
       error => {
         if (error.status == 404){
@@ -38,7 +35,7 @@ export class DashboardComponent implements OnInit {
           return;
         }
         this.toast.error(error.error.message);
-      }
+      },
     );
   }
 

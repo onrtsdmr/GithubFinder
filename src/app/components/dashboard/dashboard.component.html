@@ -1,5 +1,4 @@
-<div *ngIf="!isLoaded" class="d-flex flex-column justify-content-center align-items-center bg-dark"
-     style="height: 100vh">
+<div *ngIf="!data" class="d-flex flex-column justify-content-center align-items-center bg-dark" style="height: 100vh">
   <div>
     <img alt="" class="rounded mx-auto d-block w-25 mb-2" src="assets/images/octo-cat.png">
   </div>
@@ -8,13 +7,13 @@
   </div>
 </div>
 
-<div *ngIf="isLoaded" class="container my-5">
-  <div class="row">
+<div *ngIf="data" class="container my-5">
+  <!-- <div class="row">
     <div class="col-lg-4 col-md-6 col-12 ">
-      <img alt="..." class="rounded-circle w-50" src="{{data.avatar_url}}">
+      <img alt="..." class="rounded-circle w-50" src="{{ data.avatar_url }}">
     </div>
     <div class="col-lg-8 col-md-6 col-12">
-      <h1>{{data.name}}</h1>
+      <h1>{{data.name | uppercase }}</h1>
       <div class="row">
         <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
           <span style="font-size: x-large;"><span class="badge bg-dark"><i
@@ -22,14 +21,14 @@
         </div>
         <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
           <span style="font-size: x-large;"><span class="badge bg-dark"><i class="fas fa-user p-2"></i>
-            followers <span class="badge bg-secondary rounded-pill">{{data.followers}}</span>
+            followers <sup class="badge bg-secondary rounded-pill">{{data.followers}}</sup>
           </span>
           </span>
         </div>
         <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
           <span style="font-size: x-large;"><span class="badge bg-dark"><i
             class="fas fa-user p-2"></i>
-            following <span class="badge bg-secondary rounded-pill">{{data.following}}</span>
+            following <sup class="badge bg-secondary rounded-pill">{{data.following}}</sup>
           </span></span>
         </div>
 
@@ -37,31 +36,90 @@
           <span style="font-size: x-large;">
             <span class="badge bg-secondary">
               <i class="fas fa-map-marker-alt p-2"></i>
-              {{data.location}}
+              {{data.location == ' ' ?  'Not Found' : data.location}}
             </span>
           </span>
         </div>
         <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
           <span style="font-size: x-large;"><span class="badge bg-secondary"><i
             class="fas fa-book p-2"></i>
-            Repos <span class="badge bg-dark rounded-pill">{{data.public_repos}}</span>
+            Repos <sup class="badge bg-dark rounded-pill">{{data.public_repos}}</sup>
           </span>
           </span>
         </div>
         <div class="badge-group col-lg-2 col-md-4 col-10 m-2">
           <span style="font-size: x-large;"><span class="badge bg-secondary"><i
             class="fas fa-user p-2"></i>
-            Gists <span class="badge bg-dark rounded-pill">{{data.public_gists}}</span>
+            Gists <sup class="badge bg-dark rounded-pill">{{data.public_gists}}</sup>
           </span></span>
         </div>
       </div>
 
     </div>
-  </div>
-  <div class="d-flex justify-content-end align-items-end w-100 m-2">
-    <a [href]="data.html_url" target="_blank" class="col-lg-2 col-md-6 col-sm-6 col-10 btn btn-sm btn-outline-dark p-2 m-2">Visit <i
-      class="fas fa-arrow-right"></i></a>
-    <a [routerLink]="'/home'" class="col-lg-2 col-md-6 col-sm-6 col-10 btn btn-sm btn-secondary p-2 m-2">Go Back <i
-      class="fas fa-arrow-right"></i></a>
+  </div> -->
+
+  <div class="d-flex shadow border p-3 mb-5 rounded">
+    <div class="card mb-3 border-0 justify-content-center">
+      <div class="row g-0">
+        <div class="col-3 ">
+          <img alt="..." class="img-fluid rounded-circle" src="{{ data.avatar_url }}">
+        </div>
+        <div class="col-9">
+          <div class="d-flex flex-column  card-body">
+            <h3 class="card-title">{{data.name | uppercase }}</h3>
+            <div class="row ms-auto">
+              <div class="badge-group col-4 my-1">
+                <span class="badge bg-secondary">
+                  <i class="fas fa-user p-2"></i>
+                  {{data.login == ' ' ? 'Not Found' : data.login}}
+                </span>
+              </div>
+              <div class="badge-group col-4 my-1">
+                <span class="badge bg-secondary"><i
+                  class="fas fa-book p-2"></i>
+                  Repos <sup class="badge bg-dark rounded-pill">
+                    {{data.public_repos}}
+                  </sup>
+                </span>
+              </div>
+              <div class="badge-group col-4 my-1">
+                <span class="badge bg-secondary"><i
+                  class="fas fa-user p-2"></i>
+                  Gists <sup class="badge bg-dark rounded-pill">{{data.public_gists}}</sup>
+                </span>
+              </div>
+              <div class="badge-group col-4 my-1">
+                <span class="badge bg-secondary">
+                  <i class="fas fa-map-marker-alt p-2"></i>
+                  {{data.location == '' ? data.location : 'Not Found'}}
+                </span>
+              </div>
+              <div class="badge-group col-4 my-1">
+                <span class="badge bg-dark"><i
+                  class="fas fa-user p-2"></i>
+                  following <sup class="badge bg-secondary rounded-pill">{{data.following}}</sup>
+                </span>
+              </div>
+              <div class="badge-group col-4 my-1">
+                <span class="badge bg-dark"><i class="fas fa-user p-2"></i>
+                  followers <sup class="badge bg-secondary rounded-pill">{{data.followers}}</sup>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-12">
+        <div class="row justify-content-end align-items-end">
+          <a [href]="data.html_url" target="_blank" class="col-3 btn btn-sm btn-outline-dark p-2 m-2">Visit <i
+              class="fas fa-arrow-right"></i></a>
+          <a [routerLink]="'/home'" class="col-3 btn btn-sm btn-secondary p-2 m-2">Go Back
+            <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+    </div>
   </div>
 </div>
