@@ -1,5 +1,5 @@
 .input-group input {
-  border-radius: 2.25em;
+  border-radius: 22px !important;
 }
 
 .input-group-text {
@@ -12,9 +12,4 @@
   z-index: 999;
   background-color: transparent;
   border: none;
-  border-radius: 500px;
-}
-
-.input-group-text i {
-  border-radius: 500px;
 }
